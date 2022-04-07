@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const TaskItem = ({ task, deleteTask }) => {
+const TaskItem = ({ task, deleteTask, callTaskFunc }) => {
 
     const navigation = useNavigation();
 
@@ -15,7 +15,7 @@ const TaskItem = ({ task, deleteTask }) => {
                 <Text style={styles.itemDescription}>{task.description}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.itemDelete} onPress={() => deleteTask(task.id)}>
+            <TouchableOpacity style={styles.itemDelete} onPress={() => { deleteTask(task.id), callTaskFunc() }}>
                 <Text>Eliminar</Text>
             </TouchableOpacity>
         </View>

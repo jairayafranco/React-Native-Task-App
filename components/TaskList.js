@@ -9,10 +9,14 @@ const TaskList = () => {
 
     const isFocused = useIsFocused();
 
-    useEffect(() => {
+    const callTaskFunc = () => {  
         getTasks().then(tasks => {
             setTasks(tasks);
         });
+    };
+
+    useEffect(() => {
+        callTaskFunc();
     }, [isFocused]);
 
     return (
@@ -21,7 +25,7 @@ const TaskList = () => {
                 style={{ width: '80%' }}
                 showsVerticalScrollIndicator={false}
                 data={tasks}
-                renderItem={({ item }) => <TaskItem task={item} deleteTask={deleteTask} />}
+                renderItem={({ item }) => <TaskItem task={item} deleteTask={deleteTask} callTaskFunc={callTaskFunc} />}
             />
         </View>
     );
